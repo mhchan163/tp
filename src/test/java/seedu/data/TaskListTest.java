@@ -59,13 +59,19 @@ class TaskListTest {
         assertEquals(reading, sortedPriority.get(3));
     }
     @Test
-    void deleteTask() throws InvalidTaskNumberException{
+    void deleteTask(){
         addTask();
         tasks.delete(1);
         assertFalse(tasks.contains(reading));
         tasks.delete(1);
         assertFalse(tasks.contains(lecture));
         assertEquals(2,tasks.size());
+    }
+
+    @Test
+    void editTask() {
+        addTask();
+
     }
 
 }
