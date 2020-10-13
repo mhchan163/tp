@@ -4,9 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.data.TaskList;
 import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.InvalidDatetimeException;
 import seedu.exceptions.InvalidPriorityException;
-import seedu.exceptions.InvalidTaskNumberException;
 import seedu.exceptions.UnknowCommandException;
+import seedu.exceptions.InvalidTaskNumberException;
 import seedu.task.Task;
 import seedu.parser.Parser;
 
@@ -14,7 +15,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import seedu.task.Priority;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EditTest {
     private TaskList tasks;
@@ -30,7 +32,7 @@ class EditTest {
     private CommandResult result;
 
     @BeforeEach
-    public void setup() throws InvalidPriorityException {
+    public void setup() throws InvalidPriorityException, InvalidDatetimeException {
         parser = new Parser();
         tasks = new TaskList();
         date = LocalDate.of(2020,10,22);
@@ -44,7 +46,8 @@ class EditTest {
     @Test
     void editTask() throws
             UnknowCommandException, InvalidCommandException,
-            InvalidPriorityException, InvalidTaskNumberException {
+            InvalidPriorityException, InvalidTaskNumberException,
+            InvalidDatetimeException {
         tasks.addTask(meeting);
         tasks.addTask(lecture);
         command = parser.processRaw(EDIT_STRING);
